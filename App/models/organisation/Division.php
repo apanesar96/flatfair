@@ -11,7 +11,7 @@ class Division
 
     function __construct(string $name, ?OrganisationUnitConfig $config, Organisation $organisation)
     {
-        $this->name=$name;
+        $this->name = $name;
         $this->config = $config;
         $this->organisation = $organisation;
     }
@@ -21,47 +21,23 @@ class Division
         $this->areas[] = $area;
     }
 
-    public function getAreas()
-    {
-        return $this->areas;
-    }
-
-    public function getNames()
-    {
-        return $this->name;
-    }
-
-    public function getDivisionConfig() :?OrganisationUnitConfig
+    public function getDivisionConfig(): ?OrganisationUnitConfig
     {
         return $this->config;
     }
 
-    public function getOrganisation() :Organisation
+    public function getOrganisation(): Organisation
     {
         return $this->organisation;
     }
 
-    public function getAreaByName(string $areaName)
+    public function getAreaByName(string $areaName) //TODO future iterations: searching through divisions, areas to get the correct branch to the parent organisation
     {
         foreach ($this->areas as $area) {
-            if ($area->getName() == $areaName)
-            {
+            if ($area->getName() == $areaName) {
                 return $area;
             }
         }
         return null;
     }
-
-//    public function getBranchByName(string $branchName)
-//    {
-//        $result= null;
-//        foreach ($this->areas as $area) {
-//            if ($area->getName() == $branchName)
-//            {
-//                $result = $area;
-//            }
-//        }
-//
-//        return $result;
-//    }
 }

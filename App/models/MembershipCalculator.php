@@ -21,22 +21,28 @@ class MembershipCalculator
     private int $rentAmount;
     private string $rentPeriod;
     private Branch $branch;
+    private static ?MembershipCalculator $instance = null;
+
+    public static function getInstance(): MembershipCalculator //one instance of a single calculator to limit vulnerabilities across the application
+    {
+        if (self::$instance === null) {
+            self::$instance = new MembershipCalculator();
+        }
+        return self::$instance;
+    }
 
     /**
      * @throws Exception
      */
-
     public function calculateMembershipFee(int $rentAmount, string $rentPeriod, Branch $branch) :int
     {
         $isRentAmountValid = $this->isRentAmountInRange($rentAmount, $rentPeriod);
 
-        if(!$isRentAmountValid)
-        {
+        if(!$isRentAmountValid) {
             throw new Exception("The rent amount supplied is not in range!");
         }
 
-        if($rentPeriod !== 'month' && $rentPeriod !== 'week')
-        {
+        if($rentPeriod !== 'month' && $rentPeriod !== 'week') {
             throw new Exception('Weekly or Monthly rent period is only allowed!');
         }
 
@@ -45,20 +51,18 @@ class MembershipCalculator
         $this->branch = $branch;
         $config = $this->getConfig();
 
-        if ($config !== null && $config->isMembershipFeeFixed())
-        {
+        if ($config !== null && $config->isMembershipFeeFixed()) {
             return $config->getMembershipFee();
         }
 
         $oneWeeksRent = $rentPeriod == 'week' ? $this->rentAmount : $this->rentAmount / 4;
 
-       if ($oneWeeksRent < 12000)
-       {
-           return round(12000 * (VAT + 1)); //convert float to an integer using the round method
-       } else
-       {
-           return round($oneWeeksRent * (VAT + 1));
-       }
+        if ($oneWeeksRent < 12000) {
+            return round(12000 * (VAT + 1)); //convert float to an integer using the round method
+        } else
+        {
+            return round($oneWeeksRent * (VAT + 1));
+        }
     }
 
     private function isRentAmountInRange(int $rentAmount, string $rentPeriod) :bool
@@ -69,20 +73,17 @@ class MembershipCalculator
         return $rentPeriod == 'month' ? $monthlyRange : $weeklyRange;
     }
 
-    private function getConfig() :?OrganisationUnitConfig
+    private function getConfig() :?OrganisationUnitConfig //looking through the parent configs if the current config returns null or doesnt have a fix membership fee
     {
         $config = $this->branch->getBranchConfig();
 
-        if ($config == null || !$config->isMembershipFeeFixed())
-        {
+        if ($config == null || !$config->isMembershipFeeFixed()) {
             $config = $this->branch->getArea()->getAreaConfig();
         }
-        if ($config == null || !$config->isMembershipFeeFixed())
-        {
+        if ($config == null || !$config->isMembershipFeeFixed()) {
             $config = $this->branch->getArea()->getDivision()->getDivisionConfig();
         }
-        if ($config == null || !$config->isMembershipFeeFixed())
-        {
+        if ($config == null || !$config->isMembershipFeeFixed()) {
             $config = $this->branch->getArea()->getDivision()->getOrganisation()->getOrganisationConfig();
         }
 

@@ -31,17 +31,4 @@ class Area
     {
         return $this->division;
     }
-
-    public function getBranchByName(string $branchName)
-    {
-        $result = null;
-        foreach ($this->branches as $branch) {
-            if ($branch->getName() == $branchName)
-            {
-                $blah = $branch;
-            }
-        }
-
-        return $result;
-    }
 }

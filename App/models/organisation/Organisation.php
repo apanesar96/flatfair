@@ -6,7 +6,7 @@ use App\models\organisation\OrganisationUnitConfig;
 class Organisation
 {
     private string $name;
-    private array $divisions = [];
+    private array $divisions = []; // one to many relationship stated across the structure
     private ?OrganisationUnitConfig $config; // Question mark means this attribute can be NULL
 
     function __construct(string $name, ?OrganisationUnitConfig $config)
@@ -15,25 +15,19 @@ class Organisation
         $this->config = $config;
     }
 
-    public function addDivision(Division $division)
+    public function addDivision(Division $division): Organisation
     {
         $this->divisions[] = $division;
         return $this;
     }
 
-    public function getDivisions()
+    public function getDivisions() //TODO furture iterations: Find branch name from orgnisation level => Searching branch through children
     {
         return $this->divisions;
-    }
-
-    public function getAreas(string $divisionName)
-    {
-        return $this->divisons[0]->getAreas();
     }
 
     public function getOrganisationConfig() :?OrganisationUnitConfig
     {
         return $this->config;
     }
-
 }

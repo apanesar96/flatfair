@@ -13,7 +13,6 @@ class MembershipCalculatorTest extends TestCase
     /**
      * @test
      */
-
     public function shouldReturnTheMinimumMembershipFeeWithNoOrganisationUnitConfigGiven()
     {
         $organisation = new Organisation("Haart", null);
@@ -27,7 +26,7 @@ class MembershipCalculatorTest extends TestCase
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
 
-        $membershipCalculator = new MembershipCalculator();
+        $membershipCalculator = MembershipCalculator::getInstance();
         $feeQuote = $membershipCalculator->calculateMembershipFee(10000, 'week', $branchA);
 
         $this->assertEquals(14400, $feeQuote);
@@ -49,7 +48,8 @@ class MembershipCalculatorTest extends TestCase
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
 
-        $membershipCalculator = new MembershipCalculator();
+
+        $membershipCalculator = MembershipCalculator::getInstance();
         $feeQuote = $membershipCalculator->calculateMembershipFee(864054, 'month', $branchA);
 
         $this->assertEquals(259216, $feeQuote);
@@ -74,7 +74,7 @@ class MembershipCalculatorTest extends TestCase
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
 
-        $membershipCalculator = new MembershipCalculator();
+        $membershipCalculator = MembershipCalculator::getInstance();
         $feeQuote = $membershipCalculator->calculateMembershipFee(20000, 'month', $branchA);
 
         $this->assertEquals(35000, $feeQuote);
@@ -99,7 +99,7 @@ class MembershipCalculatorTest extends TestCase
         $branchA = new Branch("Branch A", $branchBConfig, $areaA);
         $areaA->addBranch($branchA);
 
-        $membershipCalculator = new MembershipCalculator();
+        $membershipCalculator = MembershipCalculator::getInstance();
         $feeQuote = $membershipCalculator->calculateMembershipFee(20000, 'month', $branchA);
 
         $this->assertEquals(15000, $feeQuote);
@@ -127,7 +127,7 @@ class MembershipCalculatorTest extends TestCase
         $this->expectException("Exception");
         $this->expectExceptionMessage("The rent amount supplied is not in range!");
 
-        $membershipCalculator = new MembershipCalculator();
+        $membershipCalculator = MembershipCalculator::getInstance();
         $membershipCalculator->calculateMembershipFee(250000, 'week', $branchA);
     }
 
@@ -153,7 +153,7 @@ class MembershipCalculatorTest extends TestCase
         $this->expectException("Exception");
         $this->expectExceptionMessage("The rent amount supplied is not in range!");
 
-        $membershipCalculator = new MembershipCalculator();
+        $membershipCalculator = MembershipCalculator::getInstance();
         $membershipCalculator->calculateMembershipFee(100, 'week', $branchA);
     }
 
@@ -179,7 +179,7 @@ class MembershipCalculatorTest extends TestCase
         $this->expectException("Exception");
         $this->expectExceptionMessage("The rent amount supplied is not in range!");
 
-        $membershipCalculator = new MembershipCalculator();
+        $membershipCalculator = MembershipCalculator::getInstance();
         $membershipCalculator->calculateMembershipFee(900000, 'month', $branchA);
     }
 
@@ -203,7 +203,7 @@ class MembershipCalculatorTest extends TestCase
         $this->expectException("Exception");
         $this->expectExceptionMessage("The rent amount supplied is not in range!");
 
-        $membershipCalculator = new MembershipCalculator();
+        $membershipCalculator = MembershipCalculator::getInstance();
         $membershipCalculator->calculateMembershipFee(10900, 'month', $branchA);
     }
 
@@ -227,7 +227,7 @@ class MembershipCalculatorTest extends TestCase
         $this->expectException("Exception");
         $this->expectExceptionMessage("Weekly or Monthly rent period is only allowed!");
 
-        $membershipCalculator = new MembershipCalculator();
+        $membershipCalculator = MembershipCalculator::getInstance();
         $membershipCalculator->calculateMembershipFee(11000, 'year', $branchA);
     }
 

@@ -31,8 +31,3 @@ class Branch
         return $this->name;
     }
 }
-
-    //Companies will increase or remove departments
-    //Departments may increase or remove staff
-    //Employees will be promoted, transferred or transferred.
-    //We incorporate these behaviors, which involve dynamic changes in the organization's architecture, into the corresponding classes as member methods:

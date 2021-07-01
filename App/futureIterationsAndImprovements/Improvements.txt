@@ -1,0 +1,15 @@
+
+Future Iterations:
+- Testing edge cases for example VAT and the fixed minimum and maximum rent values allowed.
+- Reducing duplication in code especially in the organisation structure => Implementing more OOP advanced concepts (Abstraction layer)
+- Testing the organisation structure objects and ensuring the right children belong to the right parent objects
+- Considering dynamic changes to the organisation structure for example, if a branch was to move to a new area etc... removing and alerting organisation proeprties.
+- Persistence and storage: Using an ORM to map the objects to a database tables to store and retrieve objects.
+- Adding design practices here so Objects instantiation will be simplified.
+
+Personal Improvements:
+- Enhancing OOP skillet and looking into more advanced concepts to reduce duplicate code and efficiently build objects more quickly
+
+
+
+
