@@ -18,10 +18,8 @@ class OrganisationRentalBuild
         $divisionA = new Division('Division A', $divisionAConfig, $organisation);
         $organisation->addDivision($divisionA);
 
-
         $areaA = new Area('Area A', null, $divisionA);
         $divisionA->addArea($areaA);
-
 
         $branchA = new Branch('Branch A', null, $areaA);
         $areaA->addBranch($branchA);
