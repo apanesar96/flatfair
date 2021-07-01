@@ -5,15 +5,16 @@ Flatfair's  rental calculator
 ## Getting started
 
 
-### System requirements:
+### System requirements and Installation:
 
 - Please ensure you have```php 7.4``` running either on your local machine or homebrew.
-- Ensure you are in the root directory.
 - Check PHP version: ``php -v``
-
+- Install Composer (via homebrew): ```brew install composer```
+- Run Composer: ``composer install``
+- Ensure you are in the repo Directory
 ## Building
-- Run tests: ```./vendor/bin/phpunit App/test/```
-- Run an instance of the calculation fee: ```php index.php``` 
+- Run tests in Root Directory of the: ```./vendor/bin/phpunit App/test/```
+- Run an instance of the calculation fee in the Root Directory: ```php index.php``` 
 
 ## Project Structure
 
