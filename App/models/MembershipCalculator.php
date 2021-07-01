@@ -30,17 +30,29 @@ class MembershipCalculator
         return $rentPeriod == 'month' ? $monthlyRange : $weeklyRange;
     }
 
-    public function calculateMembershipFee(int $rentAmount, string $rentPeriod, Branch $branch)
+    public function calculateMembershipFee(int $rentAmount, string $rentPeriod, Branch $branch) :int
     {
-        if(!isRentAmountInRange($rentAmount, $rentPeriod))
+        $isRentAmountValid = $this->isRentAmountInRange($rentAmount, $rentPeriod);
+
+        if(!$isRentAmountValid)
         {
             throw new Exception('The rent amount was not in range!');
         }
 
+        if($rentPeriod !== 'month' || $rentPeriod !== 'week')
+        {
+            throw new Exception('Weekly or Monthly rent period is only allowed!');
+        }
+
+        $this->rentAmount = $rentAmount;
+        $this->$rentPeriod = $rentPeriod;
+        $this->branch = $branch;
+
         $config = $this->getConfig();
 
-        if ($config !== null && $config->hasFixedMembershipFee())
+        if ($config !== null && $config->isMembershipFeeFixed())
         {
+
             return $config->getMembershipFee();
         }
 
@@ -48,10 +60,10 @@ class MembershipCalculator
 
        if ($oneWeeksRent < 120)
        {
-           return 120 * (VAT + 1);
+           return round(120 * (VAT + 1)); //convert float to an integer using the round method
        } else
        {
-           return $oneWeeksRent * (VAT + 1);
+           return round($oneWeeksRent * (VAT + 1));
        }
     }
 

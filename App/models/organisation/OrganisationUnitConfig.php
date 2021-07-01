@@ -11,9 +11,9 @@ class OrganisationUnitConfig
         $this->membershipFee = $membershipFee;
     }
 
-    public function hasFixedMembershipFee () :bool
+    public function isMembershipFeeFixed() :bool
     {
-        return $this->hasFixedMembershipFee();
+        return $this->hasFixedMembershipFee;
     }
 
     public function getMembershipFee() :int
