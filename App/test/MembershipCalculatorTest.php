@@ -47,8 +47,7 @@ class MembershipCalculatorTest extends TestCase
 
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
-
-
+        
         $membershipCalculator = MembershipCalculator::getInstance();
         $feeQuote = $membershipCalculator->calculateMembershipFee(864054, 'month', $branchA);
 
@@ -113,7 +112,6 @@ class MembershipCalculatorTest extends TestCase
     {
         $organisation = new Organisation("Haart", null);
 
-
         $divisionA = new Division("Division A", null, $organisation);
         $organisation->addDivision($divisionA);
 
@@ -139,13 +137,11 @@ class MembershipCalculatorTest extends TestCase
     {
         $organisation = new Organisation("Haart", null);
 
-
         $divisionA = new Division("Division A", null, $organisation);
         $organisation->addDivision($divisionA);
 
         $areaA = new Area("Area", null, $divisionA);
         $divisionA->addArea($areaA);
-
 
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
@@ -165,13 +161,11 @@ class MembershipCalculatorTest extends TestCase
     {
         $organisation = new Organisation("Haart", null);
 
-
         $divisionA = new Division("Division A", null, $organisation);
         $organisation->addDivision($divisionA);
 
         $areaA = new Area("Area", null, $divisionA);
         $divisionA->addArea($areaA);
-
 
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
@@ -196,7 +190,6 @@ class MembershipCalculatorTest extends TestCase
         $areaA = new Area("Area", null, $divisionA);
         $divisionA->addArea($areaA);
 
-
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
 
@@ -219,7 +212,6 @@ class MembershipCalculatorTest extends TestCase
 
         $areaA = new Area("Area", null, $divisionA);
         $divisionA->addArea($areaA);
-
 
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
