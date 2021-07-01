@@ -8,7 +8,7 @@ use App\models\organisation\Area;
 
 class OrganisationBuild
 {
-    public static function buildOrganisation():Organisation
+    public static function buildOrganisation() :Organisation
     {
         $organisationConfig = new OrganisationUnitConfig(true, 35000);
         $organisation = new Organisation('Spicerhaart', $organisationConfig);
@@ -23,9 +23,7 @@ class OrganisationBuild
 
         $branchAConfig = new OrganisationUnitConfig(true, 1000);
         $branchA = new Branch('Branch A', null, $areaA);
-        $areaA->addBranch($branchA);
-
-
+        $areaA->addBranch($branchA); 
 
         return $organisation;
     }

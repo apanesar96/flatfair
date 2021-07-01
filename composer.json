@@ -5,8 +5,8 @@
             "App\\": "App/"
         }
     },
-    "require": {},
     "require-dev": {
-        "squizlabs/php_codesniffer": "3.*"
+        "squizlabs/php_codesniffer": "3.*",
+        "phpunit/phpunit": "^9.5"
     }
 }
