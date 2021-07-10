@@ -47,7 +47,7 @@ class MembershipCalculatorTest extends TestCase
 
         $branchA = new Branch("Branch A", null, $areaA);
         $areaA->addBranch($branchA);
-        
+
         $membershipCalculator = MembershipCalculator::getInstance();
         $feeQuote = $membershipCalculator->calculateMembershipFee(864054, 'month', $branchA);
 
