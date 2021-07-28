@@ -1,8 +1,10 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
-use App\controller\OrganisationRentalBuild;
+use App\controller\FizzBuzz;
 
-$quotation = OrganisationRentalBuild::buildRentalFee();
+$fizz = new FizzBuzz();
 
-var_dump($quotation);
+for ($i = 1; $i <= 15; $i++) {
+    var_dump($fizz->convert($i));
+}
